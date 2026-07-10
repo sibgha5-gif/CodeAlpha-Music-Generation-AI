@@ -1,0 +1,9 @@
+{
+    "num_songs": 134,
+    "vocabulary_size": 881,
+    "total_tokens": 125665,
+    "average_tokens_per_song": 937.8,
+    "dataset_size_readable": "6.09 MB",
+    "dataset_size_bytes": 6385724,
+    "style": "mixed"
+}

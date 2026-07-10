@@ -1,0 +1,73 @@
+[
+    {
+        "filename": "continued_20260710_030813_generated_mixed_20260710_022518_20260710_030900.mid",
+        "filepath": "C:\\Users\\Metro\\OneDrive\\Desktop\\Music-Generation-AI\\generated_music\\continued_20260710_030813_generated_mixed_20260710_022518_20260710_030900.mid",
+        "source_file": "20260710_030813_generated_mixed_20260710_022518.mid",
+        "original_notes": 990,
+        "continuation_notes": 200,
+        "temperature": 0.7,
+        "generation_time": "44s",
+        "created_at": "20260710_030901",
+        "type": "continued"
+    },
+    {
+        "filename": "generated_mixed_20260710_030710.mid",
+        "filepath": "C:\\Users\\Metro\\OneDrive\\Desktop\\Music-Generation-AI\\generated_music\\generated_mixed_20260710_030710.mid",
+        "style": "mixed",
+        "num_notes": 200,
+        "temperature": 0.7,
+        "generation_time": "46s",
+        "created_at": "20260710_030711",
+        "type": "generated"
+    },
+    {
+        "filename": "generated_mixed_20260710_022518.mid",
+        "filepath": "C:\\Users\\Metro\\OneDrive\\Desktop\\Music-Generation-AI\\generated_music\\generated_mixed_20260710_022518.mid",
+        "style": "mixed",
+        "num_notes": 1000,
+        "temperature": 0.6,
+        "generation_time": "1m 52s",
+        "created_at": "20260710_022519",
+        "type": "generated"
+    },
+    {
+        "filename": "generated_mixed_20260710_003217.mid",
+        "filepath": "C:\\Users\\Metro\\OneDrive\\Desktop\\Music-Generation-AI\\generated_music\\generated_mixed_20260710_003217.mid",
+        "style": "mixed",
+        "num_notes": 1000,
+        "temperature": 0.6,
+        "generation_time": "2m 41s",
+        "created_at": "20260710_003217",
+        "type": "generated"
+    },
+    {
+        "filename": "generated_mixed_20260710_002028.mid",
+        "filepath": "C:\\Users\\Metro\\OneDrive\\Desktop\\Music-Generation-AI\\generated_music\\generated_mixed_20260710_002028.mid",
+        "style": "mixed",
+        "num_notes": 1000,
+        "temperature": 0.6,
+        "generation_time": "2m 19s",
+        "created_at": "20260710_002029",
+        "type": "generated"
+    },
+    {
+        "filename": "generated_mixed_20260710_000631.mid",
+        "filepath": "C:\\Users\\Metro\\OneDrive\\Desktop\\Music-Generation-AI\\generated_music\\generated_mixed_20260710_000631.mid",
+        "style": "mixed",
+        "num_notes": 200,
+        "temperature": 0.8,
+        "generation_time": "19s",
+        "created_at": "20260710_000631",
+        "type": "generated"
+    },
+    {
+        "filename": "generated_mixed_20260710_000322.mid",
+        "filepath": "C:\\Users\\Metro\\OneDrive\\Desktop\\Music-Generation-AI\\generated_music\\generated_mixed_20260710_000322.mid",
+        "style": "mixed",
+        "num_notes": 200,
+        "temperature": 0.8,
+        "generation_time": "18s",
+        "created_at": "20260710_000322",
+        "type": "generated"
+    }
+]

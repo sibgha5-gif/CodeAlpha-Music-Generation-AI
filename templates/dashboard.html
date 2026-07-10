@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — AI Music Generation Studio{% endblock %}
+
+{% block content %}
+<div class="container dashboard-container">
+
+    <!-- ================= DASHBOARD HERO ================= -->
+    <div class="dashboard-hero fade-in">
+        <h1><i class="bi bi-speedometer2"></i> Studio Dashboard</h1>
+        <p class="text-muted-light">Prepare your dataset, train the model, and generate original AI music.</p>
+    </div>
+
+    <!-- ================= OVERVIEW CARDS ================= -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3 col-6">
+            <div class="glass-card stat-card">
+                <i class="bi bi-music-note-list stat-icon"></i>
+                <h3 id="statSongs">--</h3>
+                <p>Dataset Songs</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="glass-card stat-card">
+                <i class="bi bi-collection stat-icon"></i>
+                <h3 id="statVocab">--</h3>
+                <p>Vocabulary Size</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="glass-card stat-card">
+                <i class="bi bi-cpu stat-icon"></i>
+                <h3 id="statModelStatus">Not Trained</h3>
+                <p>Model Status</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="glass-card stat-card">
+                <i class="bi bi-graph-up stat-icon"></i>
+                <h3 id="statAccuracy">--</h3>
+                <p>Best Accuracy</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- ================= TRAINING PANEL ================= -->
+        <div class="col-lg-6">
+            <div class="glass-card panel-card h-100">
+                <h4><i class="bi bi-gear-wide-connected"></i> Train Model</h4>
+                <p class="text-muted-light small">Prepares the dataset and trains the LSTM network.</p>
+
+                <div class="mb-3">
+                    <label class="form-label">Music Style</label>
+                    <select id="styleSelect" class="form-select form-select-glass">
+                        <option value="mixed">Mixed Dataset</option>
+                        <option value="classical">Classical</option>
+                        <option value="jazz">Jazz</option>
+                        <option value="piano">Piano</option>
+                        <option value="custom">Custom Uploaded Dataset</option>
+                    </select>
+                </div>
+
+                <div class="row g-2 mb-3">
+                    <div class="col-6">
+                        <label class="form-label">Epochs</label>
+                        <input type="number" id="epochsInput" class="form-control form-control-glass" value="50" min="1" max="500">
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label">Batch Size</label>
+                        <input type="number" id="batchSizeInput" class="form-control form-control-glass" value="64" min="8" max="512">
+                    </div>
+                </div>
+
+                <button id="trainBtn" class="btn btn-gradient w-100">
+                    <i class="bi bi-play-fill"></i> Start Training
+                </button>
+
+                <div id="trainingProgressWrap" class="mt-4 d-none">
+                    <div class="d-flex justify-content-between small mb-1">
+                        <span id="trainingEpochLabel">Epoch 0/0</span>
+                        <span id="trainingEtaLabel">ETA: --</span>
+                    </div>
+                    <div class="progress progress-glass">
+                        <div id="trainingProgressBar" class="progress-bar progress-bar-gradient" style="width:0%"></div>
+                    </div>
+                    <div class="row text-center mt-3 small">
+                        <div class="col-3"><span class="text-muted-light">Loss</span><br><strong id="metricLoss">--</strong></div>
+                        <div class="col-3"><span class="text-muted-light">Acc</span><br><strong id="metricAcc">--</strong></div>
+                        <div class="col-3"><span class="text-muted-light">Val Loss</span><br><strong id="metricValLoss">--</strong></div>
+                        <div class="col-3"><span class="text-muted-light">Val Acc</span><br><strong id="metricValAcc">--</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= GENERATE MUSIC PANEL ================= -->
+        <div class="col-lg-6">
+            <div class="glass-card panel-card h-100">
+                <h4><i class="bi bi-magic"></i> Generate Music</h4>
+                <p class="text-muted-light small">Create a brand-new composition from a random or custom seed.</p>
+
+                <div class="mb-3">
+                    <label class="form-label">Music Length: <span id="lengthValue">200</span> notes</label>
+                    <input type="range" class="form-range" id="lengthSlider" min="0" max="3" step="1" value="1">
+                    <div class="d-flex justify-content-between small text-muted-light">
+                        <span>100</span><span>200</span><span>500</span><span>1000</span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Temperature (Creativity): <span id="tempValue">0.7</span></label>
+                    <input type="range" class="form-range" id="tempSlider" min="0" max="5" step="1" value="2">
+                    <div class="d-flex justify-content-between small text-muted-light">
+                        <span>0.3</span><span>0.5</span><span>0.7</span><span>1.0</span><span>1.2</span><span>1.5</span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Custom Seed Notes <span class="text-muted-light">(optional, comma-separated)</span></label>
+                    <input type="text" id="customSeedInput" class="form-control form-control-glass" placeholder="e.g. C4, E4, G4">
+                </div>
+
+                <button id="generateBtn" class="btn btn-gradient w-100">
+                    <i class="bi bi-stars"></i> Generate Music
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= UPLOAD / CONTINUE MELODY PANEL ================= -->
+        <div class="col-lg-6">
+            <div class="glass-card panel-card h-100">
+                <h4><i class="bi bi-upload"></i> Continue a Melody</h4>
+                <p class="text-muted-light small">Upload a MIDI file and let the AI extend it.</p>
+
+                <div id="dropZone" class="drop-zone mb-3">
+                    <i class="bi bi-cloud-arrow-up drop-icon"></i>
+                    <p class="mb-1">Drag &amp; drop a .mid file here</p>
+                    <p class="text-muted-light small">or click to browse</p>
+                    <input type="file" id="fileInput" accept=".mid,.midi" hidden>
+                </div>
+                <div id="uploadedFileName" class="small text-muted-light mb-3"></div>
+
+                <button id="continueBtn" class="btn btn-gradient w-100" disabled>
+                    <i class="bi bi-play-fill"></i> Continue Melody
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= MODEL INFO PANEL ================= -->
+        <div class="col-lg-6">
+            <div class="glass-card panel-card h-100">
+                <h4><i class="bi bi-info-circle"></i> Model Information</h4>
+                <div id="modelInfoBody">
+                    <p class="text-muted-light">Model has not been trained yet.</p>
+                </div>
+                <a href="{{ url_for('export_report') }}" class="btn btn-outline-glass w-100 mt-2">
+                    <i class="bi bi-file-earmark-arrow-down"></i> Export Training Report
+                </a>
+            </div>
+        </div>
+
+        <!-- ================= TRAINING GRAPHS PANEL ================= -->
+        <div class="col-12">
+            <div class="glass-card panel-card">
+                <h4><i class="bi bi-graph-up-arrow"></i> Training Graphs</h4>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <canvas id="lossChart" height="220"></canvas>
+                    </div>
+                    <div class="col-md-4">
+                        <canvas id="accuracyChart" height="220"></canvas>
+                    </div>
+                    <div class="col-md-4">
+                        <canvas id="lrChart" height="220"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PLAYER PANEL ================= -->
+        <div class="col-12">
+            <div class="glass-card panel-card">
+                <h4><i class="bi bi-play-circle"></i> Now Playing</h4>
+                <div class="player-wrap">
+                    <div id="pianoKeyboard" class="piano-keyboard mb-3"></div>
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <button id="playBtn" class="btn btn-gradient" disabled><i class="bi bi-play-fill"></i> Play</button>
+                        <button id="stopBtn" class="btn btn-outline-glass" disabled><i class="bi bi-stop-fill"></i> Stop</button>
+                        <a id="downloadBtn" class="btn btn-outline-glass disabled" href="#" download><i class="bi bi-download"></i> Download MIDI</a>
+                        <span id="nowPlayingLabel" class="text-muted-light small">No track loaded</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= RECENTLY GENERATED PANEL ================= -->
+        <div class="col-12">
+            <div class="glass-card panel-card">
+                <h4><i class="bi bi-clock-history"></i> Recently Generated Songs</h4>
+                <div id="historyList" class="history-list">
+                    <p class="text-muted-light">No music generated yet. Train the model and hit "Generate Music" to get started.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= GENERATION LOGS PANEL ================= -->
+        <div class="col-12">
+            <div class="glass-card panel-card">
+                <h4><i class="bi bi-terminal"></i> Generation Logs</h4>
+                <div id="logConsole" class="log-console">
+                    <div class="log-line">Studio ready. Waiting for actions...</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    window.APP_URLS = {
+        datasetInfo: "{{ url_for('dataset_info') }}",
+        modelStatus: "{{ url_for('model_status') }}",
+        train: "{{ url_for('train') }}",
+        trainingProgress: "{{ url_for('training_progress') }}",
+        generate: "{{ url_for('generate') }}",
+        uploadMidi: "{{ url_for('upload_midi') }}",
+        continueMelody: "{{ url_for('continue_route') }}",
+        history: "{{ url_for('history') }}",
+        lossGraph: "{{ url_for('training_graph', graph_name='loss') }}",
+        accuracyGraph: "{{ url_for('training_graph', graph_name='accuracy') }}",
+        lrGraph: "{{ url_for('training_graph', graph_name='lr') }}"
+    };
+</script>
+{% endblock %}

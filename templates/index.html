@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}AI Music Generation Studio — Create Original Music with AI{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero-section d-flex align-items-center">
+    <div class="container text-center hero-content">
+        <span class="badge-pill mb-4 fade-in">
+            <i class="bi bi-cpu"></i> Powered by Deep Learning &middot; LSTM Neural Networks
+        </span>
+
+        <h1 class="hero-title fade-in">
+            🎵 AI Music Generation <span class="text-gradient">Studio</span>
+        </h1>
+
+        <p class="hero-subtitle fade-in">
+            Create original music using Artificial Intelligence. Train a neural network
+            on your own MIDI datasets and generate entirely new compositions — or let AI
+            continue a melody you've already started.
+        </p>
+
+        <div class="hero-actions fade-in">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-gradient btn-lg px-5 me-3">
+                <i class="bi bi-rocket-takeoff"></i> Launch Studio
+            </a>
+            <a href="#features" class="btn btn-outline-glass btn-lg px-5">
+                <i class="bi bi-info-circle"></i> Learn More
+            </a>
+        </div>
+
+        <div class="hero-stats row mt-5 fade-in">
+            <div class="col-4">
+                <h3 class="stat-number">LSTM</h3>
+                <p class="stat-label">Deep Learning Model</p>
+            </div>
+            <div class="col-4">
+                <h3 class="stat-number">100%</h3>
+                <p class="stat-label">Runs Locally</p>
+            </div>
+            <div class="col-4">
+                <h3 class="stat-number">∞</h3>
+                <p class="stat-label">Unique Compositions</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FEATURES SECTION ================= -->
+<section id="features" class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="section-title">Everything You Need to Compose with AI</h2>
+        <p class="section-subtitle">A complete pipeline from raw MIDI data to playable AI-generated music.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="glass-card feature-card h-100">
+                <div class="feature-icon"><i class="bi bi-file-earmark-music"></i></div>
+                <h5>Dataset Processing</h5>
+                <p class="text-muted-light">Automatically load, parse and tokenize MIDI datasets using music21 — notes, chords, and rests included.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-card feature-card h-100">
+                <div class="feature-icon"><i class="bi bi-diagram-3"></i></div>
+                <h5>LSTM Neural Network</h5>
+                <p class="text-muted-light">A deep stacked-LSTM architecture learns musical structure, phrasing, and harmony from your data.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-card feature-card h-100">
+                <div class="feature-icon"><i class="bi bi-magic"></i></div>
+                <h5>Music Generation</h5>
+                <p class="text-muted-light">Generate 100 to 1000 notes of original music with adjustable temperature for creativity control.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-card feature-card h-100">
+                <div class="feature-icon"><i class="bi bi-upload"></i></div>
+                <h5>Melody Continuation</h5>
+                <p class="text-muted-light">Upload your own MIDI file and let the AI continue your melody in a matching style.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-card feature-card h-100">
+                <div class="feature-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                <h5>Training Dashboard</h5>
+                <p class="text-muted-light">Track loss, accuracy, and learning rate with beautiful saved graphs after every epoch.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-card feature-card h-100">
+                <div class="feature-icon"><i class="bi bi-play-circle"></i></div>
+                <h5>In-Browser Playback</h5>
+                <p class="text-muted-light">Listen to your generated compositions instantly with an animated piano keyboard, powered by Tone.js.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CTA SECTION ================= -->
+<section class="container py-5">
+    <div class="glass-card cta-card text-center">
+        <h2 class="mb-3">Ready to compose with AI?</h2>
+        <p class="text-muted-light mb-4">Open the dashboard to prepare your dataset, train the model, and start generating music.</p>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-gradient btn-lg px-5">
+            <i class="bi bi-arrow-right-circle"></i> Go to Dashboard
+        </a>
+    </div>
+</section>
+
+{% endblock %}

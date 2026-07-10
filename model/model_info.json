@@ -1,0 +1,14 @@
+{
+    "vocab_size": 881,
+    "sequence_length": 100,
+    "total_params": 506097,
+    "epochs_trained": 5,
+    "requested_epochs": 5,
+    "batch_size": 64,
+    "training_time": "44m 47s",
+    "final_loss": 3.063746213912964,
+    "final_accuracy": 0.30655351281166077,
+    "final_val_loss": 3.019948959350586,
+    "final_val_accuracy": 0.308991014957428,
+    "trained_at": "20260710_000104"
+}

@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+dataset/**/*.mid
+dataset/**/*.midi
+processed_data/*.pkl
+processed_data/*.npz
+model/*.keras
+generated_music/*.mid
+uploads/*.mid
+training_logs/*.png
+training_logs/*.json
+training_logs/tensorboard/
+!.gitkeep
