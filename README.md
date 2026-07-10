@@ -178,14 +178,7 @@ The app gracefully handles and reports (via toast notifications, not crashes):
 
 ---
 
-## 🖼️ Screenshots
 
-> _Add screenshots of the landing page and dashboard here before publishing to GitHub._
-
-`docs/screenshot-landing.png`
-`docs/screenshot-dashboard.png`
-
----
 
 ## 🔮 Future Improvements
 
